@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MusicDAO {
-	private Connection conn;
+	   private Connection conn;
 	   private PreparedStatement ps;
 	   // 변경 사항이 없다 
 	   private static final String URL="jdbc:oracle:thin:@localhost:1521:xe";
