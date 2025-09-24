@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+
 import com.sist.dao.*;
 import com.sist.vo.*;
 import java.util.*;
@@ -35,6 +37,7 @@ public class BoardList extends HttpServlet {
 		List<BoardDTO> list=dao.boardListData(curpage);
 		// 총페이지 
 		int totalpage=dao.boardTotalPage();
+		String today=new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		// 전송 
 		out.println("<html>");
 		out.println("<head>");
@@ -66,7 +69,12 @@ public class BoardList extends HttpServlet {
 		{
 			out.println("<tr class=dataTr>");
 			out.println("<td width=10% align=center>"+vo.getNo()+"</td>");
-			out.println("<td width=45%><a href=BoardDetail?no="+vo.getNo()+">"+vo.getSubject()+"</a></td>");
+			out.println("<td width=45%><a href=BoardDetail?no="+vo.getNo()+">"+vo.getSubject()+"</a>");
+			if(today.equals(vo.getDbday()))
+			{
+				out.println("<sup><img src=images/new.gif></sup>");
+			}
+			out.println("</td>");
 			out.println("<td width=15% align=center>"+vo.getName()+"</td>");
 			out.println("<td width=20% align=center>"+vo.getDbday()+"</td>");
 			out.println("<td width=10% align=center>"+vo.getHit()+"</td>");
@@ -78,6 +86,15 @@ public class BoardList extends HttpServlet {
 		// 페이지
 		out.println("<table id=table_content width=600>");
 		out.println("<tr>");
+		out.println("<td align=left>");
+		out.println("<select name=fs>");
+		out.println("<option value=name>이름</option>");
+		out.println("<option value=subject>제목</option>");
+		out.println("<option value=content>내용</option>");
+		out.println("</select>");
+		out.println("<input type=text name=ss size=15>");
+		out.println("<input type=submit value=검색>");
+		out.println("</td>");
 		out.println("<td align=right>");
 		out.println("<a href=\"BoardList?page="+(curpage>1?curpage-1:curpage)+"\">이전</a>&nbsp;");
 		out.println(curpage+" page / "+totalpage+" pages&nbsp;");
