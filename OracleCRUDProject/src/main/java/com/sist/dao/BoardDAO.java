@@ -124,6 +124,29 @@ public class BoardDAO {
 		   return total;
 	   }
 	   // 새글 => INSERT
+	   public void boardInsert(BoardDTO vo)
+	   {
+		   try
+		   {
+			   getConnection();
+			   String sql="INSERT INTO web_board(no,name,subject,content,pwd) "
+					     +"VALUES(wb_no_seq.nextval,?,?,?,?)";
+			   ps=conn.prepareStatement(sql);
+			   ps.setString(1, vo.getName());
+			   ps.setString(2, vo.getSubject());
+			   ps.setString(3, vo.getContent());
+			   ps.setString(4, vo.getPwd());
+			   
+			   ps.executeUpdate();
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   disConnection();
+		   }
+	   }
 	   // 상세보기 => 조회수 증가 
 	   // 수정 => hidden 비밀번호 검색 
 	   // 삭제 => hidden 
