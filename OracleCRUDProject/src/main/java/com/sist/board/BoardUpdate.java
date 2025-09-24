@@ -23,7 +23,9 @@ public class BoardUpdate extends HttpServlet {
 			response.setContentType("text/html;charset=UTF-8");
 			// 2. 어떤 브라우저에 HTML을 전송할지 확인 
 			PrintWriter out=response.getWriter();
-			
+			String no=request.getParameter("no");
+			BoardDAO dao=BoardDAO.newInstance();
+			BoardDTO vo=dao.boardUpdateData(Integer.parseInt(no));
 			out.println("<html>");
 			out.println("<head>");
 			out.println("<link rel=stylesheet href=\"css/table.css\">");
@@ -40,21 +42,21 @@ public class BoardUpdate extends HttpServlet {
 			out.println("<tr>");
 			out.println("<th width=20%>이름</th>");
 			out.println("<td width=80%>");
-			out.println("<input type=text size=20 name=name required>");
+			out.println("<input type=text size=20 name=name required value="+vo.getName()+">");
 			out.println("</td>");
 			out.println("</tr>");
 			
 			out.println("<tr>");
 			out.println("<th width=20%>제목</th>");
 			out.println("<td width=80%>");
-			out.println("<input type=text size=50 name=subject required>");
+			out.println("<input type=text size=50 name=subject required value=\""+vo.getSubject()+"\">");
 			out.println("</td>");
 			out.println("</tr>");
 			
 			out.println("<tr>");
 			out.println("<th width=20%>내용</th>");
 			out.println("<td width=80%>");
-			out.println("<textarea rows=5 cols=50 name=content required></textarea>");
+			out.println("<textarea rows=5 cols=50 name=content required>"+vo.getContent()+"</textarea>");
 			out.println("</td>");
 			out.println("</tr>");
 			

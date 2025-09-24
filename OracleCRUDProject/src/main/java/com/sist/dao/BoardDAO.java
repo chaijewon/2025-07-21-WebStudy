@@ -190,6 +190,37 @@ public class BoardDAO {
 		   return vo;
 	   }
 	   // 수정 => hidden 비밀번호 검색 
+	   public BoardDTO boardUpdateData(int no)
+	   {
+		   BoardDTO vo=new BoardDTO();
+		   try
+		   {
+			   getConnection();
+			   // SQL => hit를 증가 
+			   String sql="SELECT no,name,subject,content "
+				        +"FROM web_board "
+				        +"WHERE no=?";
+			   ps=conn.prepareStatement(sql);
+			   ps.setInt(1, no);
+			   
+			   ResultSet rs=ps.executeQuery();
+			   rs.next();
+			   vo.setNo(rs.getInt(1));
+			   vo.setName(rs.getString(2));
+			   vo.setSubject(rs.getString(3));
+			   vo.setContent(rs.getString(4));
+			   
+			   rs.close();
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   disConnection();
+		   }
+		   return vo;
+	   }
 	   // 삭제 => hidden 
 	   // 검색 => 이름 / 제목 / 내용 
 }
