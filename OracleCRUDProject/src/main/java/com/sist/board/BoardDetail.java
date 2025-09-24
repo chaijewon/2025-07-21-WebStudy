@@ -61,7 +61,7 @@ public class BoardDetail extends HttpServlet {
 		out.println("<td colspan=4 align=right>");
 		out.println("<a href=\"#\">수정</a>&nbsp;");
 		out.println("<a href=\"#\">삭제</a>&nbsp;");
-		out.println("<a href=\"javascript:history.back()\">목록</a>");
+		out.println("<a href=\"BoardList\">목록</a>");
 		out.println("</td>");
 		out.println("</tr>");
 		out.println("</table>");
