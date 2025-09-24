@@ -7,6 +7,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import com.sist.dao.BoardDAO;
+import com.sist.vo.BoardDTO;
 /*
  *    Spring 
  *      @RequestMapping
@@ -21,6 +24,11 @@ public class BoardDetail extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
+		String no=request.getParameter("no");
+		BoardDAO dao=BoardDAO.newInstance();
+		BoardDTO vo=
+				dao.boardDetailData(Integer.parseInt(no));
+		
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<link rel=stylesheet href=\"css/table.css\">");
@@ -36,25 +44,25 @@ public class BoardDetail extends HttpServlet {
 		
 		out.println("<tr>");
 		out.println("<th width=20%>번호</th>");
-		out.println("<td width=30%></td>");
+		out.println("<td width=30% align=center>"+vo.getNo()+"</td>");
 		out.println("<th width=20%>작성일</th>");
-		out.println("<td width=30%></td>");
+		out.println("<td width=30% align=center>"+vo.getDbday()+"</td>");
 		out.println("</tr>");
 		
 		out.println("<tr>");
 		out.println("<th width=20%>이름</th>");
-		out.println("<td width=30%></td>");
+		out.println("<td width=30% align=center>"+vo.getName()+"</td>");
 		out.println("<th width=20%>조회수</th>");
-		out.println("<td width=30%></td>");
+		out.println("<td width=30% align=center>"+vo.getHit()+"</td>");
 		out.println("</tr>");
 		
 		out.println("<tr>");
 		out.println("<th width=20%>제목</th>");
-		out.println("<td colspan=3></td>");
+		out.println("<td colspan=3>"+vo.getSubject()+"</td>");
 		out.println("</tr>");
 		
 		out.println("<tr>");
-		out.println("<td colspan=4 height=200 valign=top align=left></td>");
+		out.println("<td colspan=4 height=200 valign=top align=left>"+vo.getContent()+"</td>");
 		out.println("</tr>");
 		
 		out.println("<tr>");

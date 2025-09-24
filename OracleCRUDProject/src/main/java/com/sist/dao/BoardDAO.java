@@ -147,7 +147,48 @@ public class BoardDAO {
 			   disConnection();
 		   }
 	   }
-	   // 상세보기 => 조회수 증가 
+	   // 상세보기 => 조회수 증가
+	   public BoardDTO boardDetailData(int no)
+	   {
+		   BoardDTO vo=new BoardDTO();
+		   try
+		   {
+			   getConnection();
+			   // SQL => hit를 증가 
+			   String sql="UPDATE web_board SET "
+					     +"hit=hit+1 "
+					     +"WHERE no=?";
+			   ps=conn.prepareStatement(sql);
+			   ps.setInt(1, no);
+			   // 실행
+			   ps.executeUpdate();
+			   
+			   sql="SELECT no,name,subject,content,hit,"
+				  +"TO_CHAR(regdate,'yyyy-mm-dd hh24:mi:ss') "
+				  +"FROM web_board "
+				  +"WHERE no=?";
+			   ps=conn.prepareStatement(sql);
+			   ps.setInt(1, no);
+			   
+			   ResultSet rs=ps.executeQuery();
+			   rs.next();
+			   vo.setNo(rs.getInt(1));
+			   vo.setName(rs.getString(2));
+			   vo.setSubject(rs.getString(3));
+			   vo.setContent(rs.getString(4));
+			   vo.setHit(rs.getInt(5));
+			   vo.setDbday(rs.getString(6));
+			   rs.close();
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   disConnection();
+		   }
+		   return vo;
+	   }
 	   // 수정 => hidden 비밀번호 검색 
 	   // 삭제 => hidden 
 	   // 검색 => 이름 / 제목 / 내용 
