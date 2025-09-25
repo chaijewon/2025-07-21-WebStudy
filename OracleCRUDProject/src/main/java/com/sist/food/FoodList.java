@@ -27,6 +27,14 @@ public class FoodList extends HttpServlet {
 		FoodDAO dao=new FoodDAO();
 		List<FoodDTO> list=dao.foodListData(curpage);
 		int totalpage=dao.foodTotalPage();
+		
+		final int BLOCK=10;
+		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+		// 1 11 21 
+		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		// 10 20 30 ..
+		if(endPage>totalpage)
+			endPage=totalpage;
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css\">");
@@ -62,13 +70,18 @@ public class FoodList extends HttpServlet {
 		out.println("<div style=\"height:10px\"></div>");
 		out.println("<div class=\"row text-center\">");
 		out.println("<ul class=pagination>");
-		out.println("<li><a href=#>&laquo;</a></li>");
-		out.println("<li><a href=#>1</a></li>");
-		out.println("<li><a href=#>2</a></li>");
-		out.println("<li><a href=#>3</a></li>");
-		out.println("<li><a href=#>4</a></li>");
-		out.println("<li><a href=#>5</a></li>");
-		out.println("<li><a href=#>&raquo;</a></li>");
+		if(startPage>1)
+		{
+		  out.println("<li><a href=FoodList?page="+(startPage-1)+">&laquo;</a></li>");
+		}
+		for(int i=startPage;i<=endPage;i++)
+		{
+	    	out.println("<li "+(curpage==i?"class=active":"")+"><a href=FoodList?page="+i+">"+i+"</a></li>");
+		}
+		if(endPage<totalpage)
+		{
+		  out.println("<li><a href=FoodList?page="+(endPage+1)+">&raquo;</a></li>");
+		}
 		out.println("</ul>");
 		out.println("</div>");
 		out.println("</div>");
