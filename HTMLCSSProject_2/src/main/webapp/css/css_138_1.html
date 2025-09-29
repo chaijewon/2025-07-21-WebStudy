@@ -3,16 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('input[type="text"]').keyup(function(){
+		let k=$(this).val()
+		//console.log(k)
+		$('#user-table > tbody > tr').hide()
+		let data=$('#user-table > tbody > tr > td:nth-child(4n+3):contains("'+k+'")');
+		$(data).parent().show()
+		
+	})
+})
+</script>
 </head>
 <body>
-   <table border=1 bordercolor=black width=800>
+   <table width=800>
+     <tr>
+      <td>
+       <input type=text size=20>
+      </td>
+     </tr>
+   </table>
+   <table border=1 bordercolor=black width=800 id="user-table">
      <tr>
        <th>순위</th>
        <th></th>
        <th>곡명</th>
        <th>가수명</th>
      </tr>
-     
+          <tbody>
              <tr>
 		       <td>1</td>
 		       <td>
@@ -1012,7 +1032,7 @@
 		       <td>Stay</td>
 		       <td>The Kid LAROI & Justin Bieber</td>
 		     </tr>
-     
+       </tbody>
    </table>
 </body>
 </html>
