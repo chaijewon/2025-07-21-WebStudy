@@ -58,7 +58,7 @@
       <!-- 
          (typeAlias*, package*)
        -->
-       <typeAlias type="" alias=""/>
+       <typeAlias type="com.sist.vo.FoodVO" alias="FoodVO"/>
     </typeAliases>
     <!-- 환경 설정 -->
     <environments default="development">
@@ -87,7 +87,7 @@
     </environments>
     <!-- Mapper등록  -->
     <mappers>
-      <mapper resource=""/>
+      <mapper resource="com/sist/mapper/food-mapper.xml"/>
     </mappers>
 </configuration>
 

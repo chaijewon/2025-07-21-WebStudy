@@ -7,6 +7,7 @@ import com.sist.vo.FoodDTO;
 
 import javax.naming.*; // Context => jdbc/oracle
 public class FoodDAO {
+////////////////////////////
    private Connection conn;
    private PreparedStatement ps;
    private static FoodDAO dao;
@@ -36,9 +37,11 @@ public class FoodDAO {
 		   if(conn!=null) conn.close();
 	   }catch(Exception e) {}
    }
+   ///////////////// Config.xml
    // 기능 
    public List<FoodDTO> foodListData(int page)
    {
+	   //////
 	   List<FoodDTO> list=
 			   new ArrayList<FoodDTO>();
 	   try
@@ -71,6 +74,7 @@ public class FoodDAO {
 		   disConnection();
 	   }
 	   return list;
+	   //// 
    }
    public int foodTotalPage()
    {
