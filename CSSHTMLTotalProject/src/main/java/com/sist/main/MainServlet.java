@@ -58,9 +58,17 @@ public class MainServlet extends HttpServlet {
 		 out.println("</head>");
 		 out.println("<body>");
 		 out.println("<div class=\"card-grid\">");
+		 /*
+		  *  http://localhost/CSSHTMLTotalProject/FoodDetail?fno=1
+		  *                                                   ----- tomcat => request
+		  *  ----------------------------------------------- URL
+		  *                  ------------------------------- URI
+		  *  ----------------
+		  *    서버 정보 : 프로토콜 / IP / PORT => 80
+		  */
 		 for(FoodVO vo:list)
 		 {
-		     
+		     out.println("<a href=FoodDetail?fno="+vo.getFno()+">");
 			 out.println("<div class=\"card\">");
 			 out.println("<img src="+vo.getPoster()+">");
 			 out.println("<div class=\"card-content\">");
@@ -68,6 +76,7 @@ public class MainServlet extends HttpServlet {
 			 out.println("<p>"+vo.getType()+"</p>");
 			 out.println("</div>");
 			 out.println("</div>");
+			 out.println("</a>");
 		     
 		 }
 		 out.println("</div>");
@@ -79,7 +88,6 @@ public class MainServlet extends HttpServlet {
 		 out.println("</div>");
 		 out.println("</body>");
 		 out.println("</html>");
-		 
 		 
 	}
 
