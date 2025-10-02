@@ -1,0 +1,21 @@
+@charset "UTF-8";
+body{
+	margin: 0px;
+	padding: 20px;
+}
+.card-grid{
+	display: grid; /* grid / flex */
+	grid-template-columns:repeat(4,1fr);
+	gap:20px;
+}
+.card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease,box-shadow 0.3s ease;
+}
+.card-content{
+	transform:translateY(-6px) scale(1.02);
+	box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
