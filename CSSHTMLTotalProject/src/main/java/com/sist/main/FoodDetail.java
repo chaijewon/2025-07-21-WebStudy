@@ -35,24 +35,53 @@ public class FoodDetail extends HttpServlet {
 	   out.println("</style>");
 	   out.println("</head>");
 	   out.println("<body>");
-	   out.println("");
-	   out.println("");
-	   out.println("");
-	   out.println("");
-	   out.println("");
-	   out.println("");
-	   out.println("");
-	   out.println("");
-	   out.println("");
-	   out.println("");
-	   out.println("");
-	   out.println("");
-	   out.println("");
-	   out.println("");
-	   out.println("");
-	   out.println("");
-	   out.println("");
-	   out.println("");
+	   out.println("<div class=container>");
+	   out.println("<div class=row>");
+	   out.println("<table class=table>");
+	   out.println("<tr>");
+	   out.println("<td width=30% class=text-center rowspan=8>");
+	   out.println("<img src="+vo.getPoster()+" style=\"width:100%\">");
+	   out.println("</td>");
+	   out.println("<td colspan=2><h2>"+vo.getName()+"&nbsp;<span style=\"color:orange\">"+vo.getScore()+"</span></h2></td>");
+	   out.println("</tr>");
+	   out.println("<tr>");
+	   out.println("<td width=15% style=\"color:gray\">주소</td>");
+	   out.println("<td width=55%>"+vo.getAddress()+"</td>");
+	   out.println("</tr>");
+	   
+	   out.println("<tr>");
+	   out.println("<td width=15% style=\"color:gray\">전화</td>");
+	   out.println("<td width=55%>"+vo.getPhone()+"</td>");
+	   out.println("</tr>");
+	   
+	   out.println("<tr>");
+	   out.println("<td width=15% style=\"color:gray\">음식종류</td>");
+	   out.println("<td width=55%>"+vo.getType()+"</td>");
+	   out.println("</tr>");
+	   
+	   out.println("<tr>");
+	   out.println("<td width=15% style=\"color:gray\">영업시간</td>");
+	   out.println("<td width=55%>"+vo.getTime()+"</td>");
+	   out.println("</tr>");
+	   
+	   out.println("<tr>");
+	   out.println("<td width=15% style=\"color:gray\">주차</td>");
+	   out.println("<td width=55%>"+vo.getParking()+"</td>");
+	   out.println("</tr>");
+	   
+	   out.println("<tr>");
+	   out.println("<td width=15% style=\"color:gray\">가격대</td>");
+	   out.println("<td width=55%>"+vo.getPrice()+"</td>");
+	   out.println("</tr>");
+	   
+	   out.println("<tr>");
+	   out.println("<td width=15% style=\"color:gray\">테마</td>");
+	   out.println("<td width=55%>"+vo.getTheme()+"</td>");
+	   out.println("</tr>");
+	   
+	   out.println("</table>");
+	   out.println("</div>");
+	   out.println("</div>");
 	   out.println("</body>");
 	   out.println("</html>");
 	   
