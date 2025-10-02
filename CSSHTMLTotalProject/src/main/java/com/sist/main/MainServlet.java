@@ -71,11 +71,11 @@ public class MainServlet extends HttpServlet {
 		     
 		 }
 		 out.println("</div>");
-		 out.println("<div height=10></div>");
+		 out.println("<div style=\"height:30px\"></div>");
 		 out.println("<div class=pagnation>");
-		 out.println("<a href=#>이전</a>");
+		 out.println("<a href=MainServlet?page="+(curpage>1?curpage-1:curpage)+">이전</a>");
 		 out.println(curpage+" page / "+totalpage+" pages");
-		 out.println("<a href=#>다음</a>");
+		 out.println("<a href=MainServlet?page="+(curpage<totalpage?curpage+1:curpage)+">다음</a>");
 		 out.println("</div>");
 		 out.println("</body>");
 		 out.println("</html>");
