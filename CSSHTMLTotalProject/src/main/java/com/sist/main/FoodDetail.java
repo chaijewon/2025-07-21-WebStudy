@@ -80,6 +80,21 @@ public class FoodDetail extends HttpServlet {
 	   out.println("</tr>");
 	   
 	   out.println("</table>");
+	   out.println("<table class=table>");
+	   out.println("<tr>");
+	   out.println("<td>");
+	   out.println(vo.getContent());
+	   out.println("</td>");
+	   out.println("</tr>");
+	   
+	   out.println("<tr>");
+	   out.println("<td class=text-right>");
+	   out.println("<button class=\"btn-sm btn-danger\" onclick=\"javascript:history.back()\">목록</button>");
+	   out.println("</td>");
+	   out.println("</tr>");
+	   
+	   
+	   out.println("</table>");
 	   out.println("</div>");
 	   out.println("</div>");
 	   out.println("</body>");
