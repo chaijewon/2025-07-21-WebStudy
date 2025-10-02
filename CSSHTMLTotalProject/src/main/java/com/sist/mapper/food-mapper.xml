@@ -26,4 +26,25 @@
      ORDER BY fno ASC
      OFFSET #{start} ROWS FETCH NEXT 12 ROWS ONLY
   </select>
+  <!-- 
+       resultType : 리턴형 (List<FoodVO> FoodVO)
+                          ====================
+                            | FoodVO 
+                          메소드 : selectList
+                                 selectOne
+       parameterType
+   -->
+  <select id="foodTotalPage" resultType="int">
+    SELECT CEIL(COUNT(*)/12.0) FROM menupan_food
+  </select>
+  <update id="hitIncrement" parameterType="int" >
+    UPDATE menupan_food SET
+    hit=hit+1
+    WHERE fno=#{fno}
+  </update>
+  <select id="foodDetailData" resultType="FoodVO"
+     parameterType="int">
+     SELECT * FROM menupan_food
+     WHERE fno=#{fno}
+  </select>
 </mapper>

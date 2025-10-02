@@ -46,10 +46,15 @@ public class MainServlet extends HttpServlet {
 		 int curpage=Integer.parseInt(page);
 		 int start=(curpage*12)-12;
 		 List<FoodVO> list=FoodDAO.foodListData(start);
-		 
+		 int totalpage=FoodDAO.foodTotalPage();
 		 out.println("<html>");
 		 out.println("<head>");
 		 out.println("<link rel=stylesheet href=\"css/image.css\">");
+		 out.println("<style type=text/css>");
+		 out.println(".pagnation{text-align:center}");
+		 out.println("a {text-decoration:none;color:black}");
+		 out.println("a:hover{text-decoration:underline;color:green}");
+		 out.println("</style>");
 		 out.println("</head>");
 		 out.println("<body>");
 		 out.println("<div class=\"card-grid\">");
@@ -65,6 +70,12 @@ public class MainServlet extends HttpServlet {
 			 out.println("</div>");
 		     
 		 }
+		 out.println("</div>");
+		 out.println("<div height=10></div>");
+		 out.println("<div class=pagnation>");
+		 out.println("<a href=#>이전</a>");
+		 out.println(curpage+" page / "+totalpage+" pages");
+		 out.println("<a href=#>다음</a>");
 		 out.println("</div>");
 		 out.println("</body>");
 		 out.println("</html>");

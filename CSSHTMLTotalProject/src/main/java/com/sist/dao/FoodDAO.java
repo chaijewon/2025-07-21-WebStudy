@@ -37,4 +37,36 @@ public class FoodDAO {
 	  // disConnection() // DBCP => 반환 
 	  return list;
   }
+  /*
+   *     <select id="foodTotalPage" resultType="int">
+		    SELECT CEIL(COUNT(*)/12.0) FROM menupan_food
+		  </select>
+  */
+  public static int foodTotalPage()
+  {
+	  SqlSession session=ssf.openSession();
+	  int total=session.selectOne("foodTotalPage");
+	  session.close();
+	  return total;
+  }
+  /*
+		  <update id="hitIncrement" parameterType="int" >
+		    UPDATE menupan_food SET
+		    hit=hit+1
+		    WHERE fno=#{fno}
+		  </update>
+		  <select id="foodDetailData" resultType="FoodVO"
+		     parameterType="int">
+		     SELECT * FROM menupan_food
+		     WHERE fno=#{fno}
+		  </select>
+   */
+  public static FoodVO foodDetailData(int fno)
+  {
+	  SqlSession session=ssf.openSession(true);
+	  session.update("hitIncrement",fno);// 동작하지 않는다 
+	  FoodVO vo=session.selectOne("foodDetailData", fno);
+	  session.close();
+	  return vo;
+  }
 }
