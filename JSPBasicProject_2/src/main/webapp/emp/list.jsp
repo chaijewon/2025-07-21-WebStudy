@@ -20,6 +20,14 @@
 .table {
    margin: 0px auto;
 }
+a{
+   color: black;
+   text-decoration: none;
+}
+a:hover{
+   color: green;
+   text-decoration: underline;
+}
 </style>
 </head>
 <body>
@@ -41,7 +49,9 @@
       %>
               <tr>
                 <td align="center"><%=vo.getEmpno() %></td>
-                <td align="center"><%=vo.getEname() %></td>
+                <td align="center">
+                <a href="detail.jsp?empno=<%=vo.getEmpno()%>"><%=vo.getEname() %></a>
+                </td>
                 <td align="center"><%=vo.getJob() %></td>
                 <td align="center"><%=vo.getDbday() %></td>
                 <td align="center"><%=vo.getSal() %></td>

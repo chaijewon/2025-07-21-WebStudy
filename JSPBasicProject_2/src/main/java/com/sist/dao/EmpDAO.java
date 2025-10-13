@@ -31,4 +31,12 @@ public class EmpDAO {
 	   session.close();// 반환 => disConnection()
 	   return list;
    }
+   //            resultType          paramterType
+   public static EmpVO empDetailData(int empno)
+   {
+	   SqlSession session=ssf.openSession();// getConnection()
+	   EmpVO vo=session.selectOne("empDetailData",empno);
+	   session.close();// 반환 => disConnection()
+	   return vo;
+   }
 }
