@@ -18,7 +18,7 @@
 </head>
 <body>
    <h1><%= vo.getEname() %>님의 상세 정보</h1>
-   <table class="table" width="350">
+   <table class="table" width="450">
      <tbody>
        <tr>
         <th>사번</th>
@@ -34,7 +34,7 @@
        </tr>
        <tr>
         <th>입사일</th>
-        <td><%=vo.getHiredate() %></td>
+        <td><%=vo.getDbday() %></td>
        </tr>
        <tr>
         <th>사수</th>

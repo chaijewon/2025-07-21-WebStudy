@@ -26,7 +26,9 @@
   FROM emp
  </select>
  <select id="empDetailData" resultType="EmpVO" parameterType="int">
-   SELECT * FROM emp
+   SELECT empno,ename,job,sal,mgr,comm,deptno,
+          TO_CHAR(hiredate,'YYYY-MM-DD HH24:MI:SS DY') as dbday
+   FROM emp
    WHERE empno=#{empno}
  </select>
 </mapper>
