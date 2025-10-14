@@ -94,7 +94,7 @@ a:hover{
               <img src="<%=vo.getPoster()%>" style="width: 30px;height: 30px">
                 
              </td>
-             <td><%=vo.getName() %></td>
+             <td><a href="detail.jsp?fno=<%=vo.getFno()%>"><%=vo.getName() %></a></td>
              <td><%=vo.getType() %></td>
             </tr>
       <%
@@ -106,9 +106,9 @@ a:hover{
     <tbody>
       <tr>
        <td align="center">
-        <a href="">이전</a>
+        <a href="list.jsp?page=<%=curpage>1?curpage-1:curpage%>&type=<%=type%>">이전</a>
          <%=curpage %> page / <%=totalpage %> pages
-        <a href="">다음</a>
+        <a href="list.jsp?page=<%=curpage<totalpage?curpage+1:curpage%>&type=<%=type%>"">다음</a>
        </td>
       </tr>
     </tbody>

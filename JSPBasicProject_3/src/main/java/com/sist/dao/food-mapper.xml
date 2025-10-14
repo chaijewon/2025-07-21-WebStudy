@@ -27,4 +27,10 @@
    SELECT * FROM menupan_food
    WHERE fno&lt;100
  </select> -->
+ <select id="foodDetailData" resultType="FoodVO"
+  parameterType="int"
+ >
+   SELECT * FROM menupan_food
+   WHERE fno=#{fno}
+ </select>
 </mapper>
