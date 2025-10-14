@@ -59,6 +59,19 @@ a:hover{
   text-decoration: underline;
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	// vuejs => mounted() , react => effect()
+	// 일반 자바스크립트 = window.onload=function(){}
+	$('#keyword').keyup(function(){
+		let k=$(this).val();
+		$('.user-table > tbody > tr').hide();
+		let temp=$('.user-table > tbody > tr > td:nth-child(4n+3):contains("'+k+'")');
+		$(temp).parent().show();
+	})
+})
+</script>
 </head>
 <body>
   <table class="table" width="800">
@@ -74,7 +87,15 @@ a:hover{
      </tr>
    </tbody>
   </table>
-  <table class="table" width="800">
+  <table class="table" width=800>
+   <tr>
+    <td>
+     <input type=text size=20 id="keyword" 
+       placeholder="검색어 입력">
+    </td>
+   </tr>
+  </table>
+  <table class="table user-table" width="800">
     <thead>
       <tr>
         <th>번호</th>
