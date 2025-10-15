@@ -37,6 +37,19 @@
     -->
  </insert>
  <!-- 상세보기 : hit증가 -->
+ <update id="hitIncrement" parameterType="int">
+  UPDATE jspBoard SET
+  hit=hit+1
+  WHERE no=#{no}
+ </update>
+ <select id="boardDetailData" resultType="BoardVO"
+  parameterType="int"
+ >
+  SELECT no,name,subject,content,hit,
+         TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday
+  FROM jspBoard
+  WHERE no=#{no}
+ </select>
  <!-- 수정 : 데이터 읽기 / 실제 수정 (Update)-->
  <!-- 삭제 : 비번 (Delete)-->
 </mapper>

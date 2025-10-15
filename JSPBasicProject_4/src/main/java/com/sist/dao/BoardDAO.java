@@ -88,6 +88,31 @@ public class BoardDAO {
 	   //session.commit();
 	   session.close();
    }
+   /*
+    *   <update id="hitIncrement" parameterType="int">
+		  UPDATE jspBoard SET
+		  hit=hit+1
+		  WHERE no=#{no}
+		 </update>
+		 <select id="boardDetailData" resultType="BoardVO"
+		  parameterType="int"
+		 >
+		  SELECT no,name,subject,content,hit,
+		         TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday
+		  FROM jspBoard
+		  WHERE no=#{no}
+		 </select>
+    */
+   public static BoardVO boardDetailData(int no)
+   {
+	   SqlSession session=ssf.openSession();
+	   // 조회수 증가 
+	   session.update("hitIncrement",no);
+	   session.commit();
+	   BoardVO vo=session.selectOne("boardDetailData",no);
+	   session.close();
+	   return vo;
+   }
 }
 
 

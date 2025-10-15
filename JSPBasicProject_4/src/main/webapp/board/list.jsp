@@ -71,7 +71,7 @@ h1 {
         %>
                 <tr>
 		         <td width=10% class="text-center"><%=vo.getNo() %></td>
-		         <td width=45%><%=vo.getSubject() %></td>
+		         <td width=45%><a href="detail.jsp?no=<%=vo.getNo()%>"><%=vo.getSubject() %></a></td>
 		         <td width=10% class="text-center"><%=vo.getName() %></td>
 		         <td width=15% class="text-center"><%=vo.getDbday() %></td>
 		         <td width=10% class="text-center"><%=vo.getHit() %></td>
