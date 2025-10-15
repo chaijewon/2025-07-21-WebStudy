@@ -113,6 +113,22 @@ public class BoardDAO {
 	   session.close();
 	   return vo;
    }
+   /*
+    *   <select id="boardUpdateData" resultType="BoardVO"
+		  parameterType="int"
+		 >
+		  SELECT no,name,subject,content
+		  FROM jspBoard
+		  WHERE no=#{no}
+		 </select>
+    */
+   public static BoardVO boardUpdateData(int no)
+   {
+	   SqlSession session=ssf.openSession();
+	   BoardVO vo=session.selectOne("boardUpdateData",no);
+	   session.close();
+	   return vo;
+   }
 }
 
 
