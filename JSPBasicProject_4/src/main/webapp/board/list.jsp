@@ -79,6 +79,13 @@ h1 {
         <%
            }
         %>
+        <tr>
+         <td colspan="5" class="text-center">
+          <a href="list.jsp?page=<%=curpage>1?curpage-1:curpage %>" class="btn btn-sm btn-warning">이전</a>
+           <%=curpage %> page / <%=totalpage %> pages
+          <a href="list.jsp?page=<%=curpage<totalpage?curpage+1:curpage %>" class="btn btn-sm btn-warning">다음</a>
+         </td>
+        </tr>
       </tbody>
      </table>
    </div>
