@@ -23,18 +23,7 @@
           <li><a href="main.jsp?no=2">JSP 지시자</a></li>
         </ul>
       </li>
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">내장객체
-        <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">request</a></li>
-          <li><a href="#">response</a></li>
-          <li><a href="#">application</a></li>
-          <li><a href="#">pageContext</a></li>
-          <li><a href="#">out</a></li>
-          <li><a href="#">session</a></li>
-        </ul>
-      </li>
+      <li><a href="main.jsp?no=4">내장객체</a></li>
       <li><a href="#">요약</a></li>
     </ul>
   </div>
