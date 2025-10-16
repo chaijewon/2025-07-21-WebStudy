@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.sist.manager.*"%>
+<%
+    String no=request.getParameter("no");
+    if(no==null)
+    	no="0";
+    JspChange jc=new JspChange();
+    String jsp=jc.change(Integer.parseInt(no));
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +27,7 @@
      pageContext.include("header.jsp");
   %>
   <%
-     pageContext.include("home.jsp");
+     pageContext.include(jsp);
   %>
 </body>
 </html>

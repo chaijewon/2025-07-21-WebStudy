@@ -14,14 +14,13 @@
       <a class="navbar-brand" href="#">JSP</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
+      <li class="active"><a href="main.jsp">Home</a></li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">JSP
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">JSP 동작</a></li>
-          <li><a href="#">JSP 실행</a></li>
-          <li><a href="#">JSP 지시자</a></li>
+          <li><a href="main.jsp?no=1">JSP 동작</a></li>
+          <li><a href="main.jsp?no=2">JSP 지시자</a></li>
         </ul>
       </li>
       <li class="dropdown">
