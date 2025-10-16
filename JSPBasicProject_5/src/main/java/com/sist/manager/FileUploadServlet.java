@@ -33,7 +33,15 @@ public class FileUploadServlet extends HttpServlet {
 		{
 			// file 읽기
 			Part filePart=request.getPart("upload");
-			String fileName=filePart.getSubmittedFileName();
+			
+			
+			if(filePart==null || filePart.getSize()==0)
+			{
+				response.getWriter().println("<h1>파일이 없습니다</h1>");
+			}
+			else
+			{
+				String fileName=filePart.getSubmittedFileName();
 			// 파일 저장 
 			filePart.write(uploadPath+File.separator+fileName);
 			// c:\\upload\\mm1.jpg
@@ -43,6 +51,7 @@ public class FileUploadServlet extends HttpServlet {
 			response.getWriter().println("<p>파일명:"+fileName+"</p>");
 			response.getWriter().println("<p>위치:"+uploadPath+"</p>");*/
 			response.sendRedirect("application_exam/print.jsp?fn="+fileName);
+			}
 		}catch(Exception ex)
 		{
 			ex.printStackTrace();
