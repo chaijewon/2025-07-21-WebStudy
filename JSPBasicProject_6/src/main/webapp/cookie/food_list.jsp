@@ -149,6 +149,8 @@ p {
    <div class="row">
      <div class="recent-container">
        <h3>최근 방문 맛집</h3>
+       <a href="cookie_all_view.jsp" class="btn btn-sm btn-info">전체 보기</a>
+       <a href="cookie_all_remove.jsp" class="btn btn-sm btn-warning">전체 삭제</a>
        <div class="recent-list">
         <%
            int i=0;
