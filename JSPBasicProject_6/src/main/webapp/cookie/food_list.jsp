@@ -62,6 +62,7 @@
   width: 960px;
   margin: 0px auto;
 }
+
 p {
  overflow: hidden;
  white-space: nowrap;
@@ -70,6 +71,26 @@ p {
 </style>
 </head>
 <body>
-
+  <div class="container">
+   <div class="row">
+    <%
+       for(FoodVO vo:list)
+       {
+    %>
+         <div class="col-md-3">
+		    <div class="thumbnail">
+		      <a href="#">
+		        <img src="<%= vo.getPoster()%>" style="width:230px;height: 150px">
+		        <div class="caption">
+		          <p><%=vo.getName() %></p>
+		        </div>
+		      </a>
+		    </div>
+		  </div>
+    <%
+       }
+    %>
+   </div>
+  </div>
 </body>
 </html>
