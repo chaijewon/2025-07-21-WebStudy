@@ -48,6 +48,29 @@
    
    if(endPage>totalpage)
 	   endPage=totalpage;
+   
+   // 쿠키 읽기 
+   Cookie[] cookies=request.getCookies();
+   List<FoodVO> cList=new ArrayList<FoodVO>();
+   // getName() , getValue()
+   //    키          값
+   if(cookies!=null)
+   {
+	   // 최신순 
+	   for(int i=cookies.length-1;i>=0;i--)
+	   {
+		   // food_ 시작하는 키만 가지고 온다 
+		   if(cookies[i].getName().startsWith("food_"))
+		   {
+			   // 값을 읽기
+			   String fno=cookies[i].getValue();
+			   // 번호에 해당되는 VO객체 읽기
+			   FoodVO vo=
+				 FoodDAO.foodDetailData(Integer.parseInt(fno));
+			   cList.add(vo);
+		   }
+	   }
+   }
 %>
 <!DOCTYPE html>
 <html>
@@ -121,6 +144,32 @@ p {
          }
        %>
       </ul>
+   </div>
+   <div style="height: 10px"></div>
+   <div class="row">
+     <div class="recent-container">
+       <h3>최근 방문 맛집</h3>
+       <div class="recent-list">
+        <%
+           int i=0;
+           for(FoodVO vo:cList)
+           {
+        	   //if(i>9) break;
+        %>
+               <a class="recent-card" href="food_detail.jsp?fno=<%=vo.getFno()%>">
+                <div class="thumb">
+                 <img src="<%=vo.getPoster() %>">
+                </div>
+                <div class="meta">
+                 <div class="title"><%=vo.getName() %></div>
+                </div>
+               </a>
+        <%
+        	   i++;
+           }
+        %>
+       </div>
+     </div>
    </div>
   </div>
 </body>
