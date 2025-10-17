@@ -58,6 +58,7 @@ h1{
   <div class="container">
    <div class="row">
      <h1>회원 정보</h1>
+     <form method="post" action="action_ok.jsp">
      <table class="table">
       <tr>
        <td width=20%>이름</td>
@@ -87,7 +88,8 @@ h1{
       <tr>
        <td width=20%>관리자</td>
        <td width=80%>
-        <input type="checkbox" name="admin">관리자
+        <input type="radio" name="admin" value="true">관리자
+        <input type="radio" name="admin" value="false">사용자
        </td>
       </tr>
       <tr>
@@ -96,6 +98,7 @@ h1{
        </td>
       </tr>
      </table>
+     </form>
    </div>
   </div>
 </body>
