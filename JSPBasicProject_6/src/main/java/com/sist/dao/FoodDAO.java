@@ -44,4 +44,24 @@ public class FoodDAO {
 	  }
 	  return list;
   }
+  // 총페이지 
+  public static int foodTotalPage()
+  {  
+	  int total=0;
+	  SqlSession session=null;
+	  try
+	  {
+		  session=ssf.openSession();
+		  total=session.selectOne("foodTotalPage");
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  finally
+	  {
+		  if(session!=null)
+			  session.close();
+	  }
+	  return total;
+  }
 }
