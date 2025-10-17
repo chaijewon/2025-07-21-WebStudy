@@ -46,6 +46,8 @@
    int startPage=((curpage-1)/BLOCK*BLOCK)+1;
    int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
    
+   if(endPage>totalpage)
+	   endPage=totalpage;
 %>
 <!DOCTYPE html>
 <html>
@@ -90,6 +92,35 @@ p {
     <%
        }
     %>
+   </div>
+   <div style="height: 10px"></div>
+   <div class="row text-center">
+      <ul class="pagination">
+       <%
+         if(startPage>1)
+         {
+       %>
+           <li><a href="food_list.jsp?page=<%=startPage-1%>">&lt;</a></li>
+       <%
+         }
+       %>
+       <%
+         for(int i=startPage;i<=endPage;i++)
+         {
+       %>
+           <li <%=curpage==i?"class=active":"" %>><a href="food_list.jsp?page=<%=i%>"><%=i %></a></li>
+       <%
+         }
+       %>
+       <%
+         if(endPage<totalpage)
+         {
+       %>
+           <li><a href="food_list.jsp?page=<%=endPage+1%>">&gt;</a></li>
+       <%
+         }
+       %>
+      </ul>
    </div>
   </div>
 </body>
