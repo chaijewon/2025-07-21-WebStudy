@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.sist.vo.*,com.sist.dao.*"%>
+<%@ page import="java.util.*" %>
 <%
     // session에서 데이터 읽기
     String id=(String)session.getAttribute("id");
@@ -7,6 +8,8 @@
     String fno=request.getParameter("fno");
     FoodVO vo=FoodDAO.foodDetailData(Integer.parseInt(fno));
     // 댓글 
+    List<ReplyVO> list=
+       ReplyDAO.replyListData(Integer.parseInt(fno));
 %>
 <!DOCTYPE html>
 <html>
@@ -90,17 +93,34 @@
 	   <table class="table">
 	    <tr>
 	     <td>
-	         <table class="table">
+	       <%
+	           for(ReplyVO rvo:list)
+	           {
+	       %>
+	          <table class="table">
 			    <tr>
-			     <td class="text-left"></td>
-			     <td class="text-right"></td>
+			     <td class="text-left">◑<%=rvo.getName() %>(<%=rvo.getDbday() %>)</td>
+			     <td class="text-right">
+			      <%
+			          if(rvo.getId().equals(id)) // 본인 확인
+			          {
+			      %>
+			       <a href="#" class="btn btn-xs btn-danger">수정</a>
+			       <a href="#" class="btn btn-xs btn-success">삭제</a>
+			      <%
+			          }
+			      %>
+			     </td>
 			    </tr>
 			    <tr>
 			      <td colspan="2">
-			       <pre style="white-space:nowrap;border: none;background-color: white"></pre>
+			       <pre style="white-space:pre-wrap;border: none;background-color: white"><%=rvo.getMsg() %></pre>
 			      </td>
 			    </tr>
 			   </table>
+			 <%
+	           }
+			 %>
 	     </td>
 	    </tr>
 	   </table>
