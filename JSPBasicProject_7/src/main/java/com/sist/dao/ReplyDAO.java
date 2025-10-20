@@ -62,4 +62,21 @@ public class ReplyDAO {
 	  session.close();
 	  return list;
   }
+  /*
+   *     <delete id="replyDelete" parameterType="int">
+		   DELETE FROM reply
+		   WHERE rno=#{rno}
+		 </delete>
+		 
+		 JSP => 링크 : 어떤 데이터 전송 
+		 DAO 제작 
+		 JSP에서 처리 => 이동 (response.sendRedirect()
+   */
+  public static void replyDelete(int rno)
+  {
+	  SqlSession session=ssf.openSession();
+	  session.delete("replyDelete",rno);
+	  session.commit();
+	  session.close();
+  }
 }

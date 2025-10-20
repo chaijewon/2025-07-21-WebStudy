@@ -20,4 +20,8 @@
    WHERE fno=#{fno}
    ORDER BY rno DESC
  </select>
+ <delete id="replyDelete" parameterType="int">
+   DELETE FROM reply
+   WHERE rno=#{rno}
+ </delete>
 </mapper>
