@@ -1,6 +1,6 @@
 package com.sist.vo;
 /*
- *   RNO     NOT NULL NUMBER       
+ *  RNO     NOT NULL NUMBER       
 	FNO              NUMBER       
 	ID               VARCHAR2(20) 
 	NAME    NOT NULL VARCHAR2(51) 
