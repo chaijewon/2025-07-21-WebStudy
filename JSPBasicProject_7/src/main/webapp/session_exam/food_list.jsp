@@ -79,6 +79,35 @@ p {
        }
     %>
    </div>
+   <div style="height:20px"></div>
+   <div class="row text-center">
+     <ul class="pagination">
+     <%
+        if(startPage>1)
+        {
+     %>
+          <li><a href="food_list.jsp?page=<%=startPage-1%>">&lt;</a></li>
+     <%
+        }
+     %>
+     <%
+        for(int i=startPage;i<=endPage;i++)
+        {
+     %>
+         <li <%=i==curpage?"class=active":"" %>><a href="food_list.jsp?page=<%=i%>"><%=i %></a></li>
+     <%
+        }
+     %>
+     <%
+        if(endPage<totalpage)
+        {
+     %>
+          <li><a href="food_list.jsp?page=<%=endPage+1%>">&gt;</a></li>
+     <%
+        }
+     %>
+     </ul>
+   </div>
   </div>
 </body>
 </html>
