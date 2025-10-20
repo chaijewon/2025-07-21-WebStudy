@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.sist.vo.*,com.sist.dao.*"%>
 <%
+    // session에서 데이터 읽기
+    String id=(String)session.getAttribute("id");
     //1. 사용자 보내준 데이터 받기 
     String fno=request.getParameter("fno");
     FoodVO vo=FoodDAO.foodDetailData(Integer.parseInt(fno));
@@ -80,6 +82,42 @@
          </td>
        </tr>
      </table>
+   </div>
+   <div style="height: 20px"></div>
+   <div class="row">
+	   <h3>댓글</h3>
+	   <hr width="800">
+	   <table class="table">
+	    <tr>
+	     <td class="text-left"></td>
+	     <td class="text-right"></td>
+	    </tr>
+	    <tr>
+	      <td colspan="2">
+	       <pre style="white-space:nowrap;border: none;background-color: white"></pre>
+	      </td>
+	    </tr>
+	   </table>
+	   <%
+	     if(id!=null) // 로그인된 상태
+	     {
+	   %>
+	        <table class="table">
+	         <tr>
+	          <td>
+	           <form method="post" action="reply_insert.jsp">
+		           <textarea rows="4" cols="85" name="msg" style="float: left"></textarea>
+		           <input type=hidden name=fno value="<%=fno%>">
+		           <input type=submit value="댓글쓰기" class="btn-primary"
+		            style="float: left;height: 88px"
+		           >
+	           </form>
+	          </td>
+	         </tr>
+	        </table>
+	   <%
+	     }
+	   %>
    </div>
   </div>
 </body>
