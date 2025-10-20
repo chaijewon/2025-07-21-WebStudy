@@ -89,15 +89,22 @@
 	   <hr width="800">
 	   <table class="table">
 	    <tr>
-	     <td class="text-left"></td>
-	     <td class="text-right"></td>
-	    </tr>
-	    <tr>
-	      <td colspan="2">
-	       <pre style="white-space:nowrap;border: none;background-color: white"></pre>
-	      </td>
+	     <td>
+	         <table class="table">
+			    <tr>
+			     <td class="text-left"></td>
+			     <td class="text-right"></td>
+			    </tr>
+			    <tr>
+			      <td colspan="2">
+			       <pre style="white-space:nowrap;border: none;background-color: white"></pre>
+			      </td>
+			    </tr>
+			   </table>
+	     </td>
 	    </tr>
 	   </table>
+	   
 	   <%
 	     if(id!=null) // 로그인된 상태
 	     {
