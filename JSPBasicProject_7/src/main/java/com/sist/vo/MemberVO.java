@@ -27,6 +27,6 @@ import lombok.Data;
  */
 @Data
 public class MemberVO {
-  private String id,pwd,name,post,addr1,addr2;
+  private String id,pwd,name,post,addr1,addr2,msg;
   private int login;
 }
