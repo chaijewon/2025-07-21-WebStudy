@@ -1,5 +1,6 @@
 package com.sist.controller;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -26,7 +27,7 @@ public class DispatcherServlet extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		try
 		{
-			String path="C:\\webDev\\webStudy\\JSPFrontProject_3\\src\\main\\webapp\\WEB-INF\\config\\application.xml";
+			String path="C:\\Users\\sist\\git\\web-study\\JSPFrontProject_3\\src\\main\\webapp\\WEB-INF\\config\\application.xml";
 			File file=new File(path);
 			DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
 		    // => XML 파싱기 생성 => 싱글턴 
@@ -63,7 +64,13 @@ public class DispatcherServlet extends HttpServlet {
 		// 메뉴를 찾아서 주문 요청 
 		String cmd=request.getRequestURI();
 		cmd=cmd.substring(request.getContextPath().length()+1);
-		System.out.println("cmd="+cmd);
+		//System.out.println("cmd="+cmd);
+		// Model을 찾아서 메소드 호출 => 요청처리 => JSP로 전송 
+		Model model=(Model)clsMap.get(cmd);
+		String jsp=model.handlerRequest(request, response);
+		RequestDispatcher rd=
+				request.getRequestDispatcher(jsp);
+		rd.forward(request, response);
 	}
 
 }
