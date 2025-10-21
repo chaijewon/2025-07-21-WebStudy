@@ -20,14 +20,21 @@ p {
  white-space: nowrap;
  text-overflow: ellipsis;
 }
+a.link:hover{
+  cursor: pointer;
+}
 </style>
 <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript">
 let food_list=[]
-window.onload=async ()=>{
+window.onload=()=>{
+	dataRecv(1);
+}
+async function dataRecv(page)
+{
 	await axios.get('../food/list.do',{
 		params:{
-			page:1
+			page:page
 		}
 	}).then((response)=>{
 		console.log(response.data)
@@ -48,14 +55,34 @@ window.onload=async ()=>{
 	     +'</div>'
 	     +'</div>'
 	})
-	document.querySelector('.row').innerHTML=html
+	document.querySelector('.list').innerHTML=html
+	
+	// 페이지 출력
+	let pages='<ul class="pagination">';
+	if(food_list[0].startPage>1)
+	{
+		pages+='<li><a class="link" onclick="dataRecv('+(food_list[0].startPage-1)+')">&lt;</a></li>'
+	}
+	for(let i=food_list[0].startPage;i<=food_list[0].endPage;i++)
+	{
+	   pages+='<li '+(i==food_list[0].curpage?"class=active":"")+'><a class="link" onclick="dataRecv('+i+')">'+i+'</a></li>'	
+	}
+	if(food_list[0].endPage<food_list[0].totalpage)
+	{
+		pages+='<li><a class="link" onclick="dataRecv('+(food_list[0].endPage+1)+')">&gt;</a></li>'
+	}
+	document.querySelector('.pages').innerHTML=pages
 }
 </script>
 </head>
 <body>
   <div class="container">
-   <div class="row">
+   <div class="row list">
     
+   </div>
+   <div style="height: 20px"></div>
+   <div class="row text-center pages">
+     
    </div>
   </div>
 </body>

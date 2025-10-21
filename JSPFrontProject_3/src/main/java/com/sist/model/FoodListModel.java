@@ -36,12 +36,21 @@ public class FoodListModel implements Model {
 		// 결과값 전송 
 		JSONArray arr=new JSONArray(); // List매칭 
 		// [] => [{},{},{},{}...]
+		int i=0;
 		for(FoodVO vo:list)
 		{
 			JSONObject obj=new JSONObject(); // {}
 			obj.put("fno", vo.getFno());
 			obj.put("name", vo.getName());
 			obj.put("poster", vo.getPoster());
+			if(i==0)
+			{
+				obj.put("curpage", curpage);
+				obj.put("totalpage", totalpage);
+				obj.put("startPage", startPage);
+				obj.put("endPage", endPage);
+			}
+			i++;
 			arr.add(obj);
 		}
 		request.setAttribute("json", arr.toJSONString());
