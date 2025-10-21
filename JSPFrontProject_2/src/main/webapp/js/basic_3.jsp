@@ -60,12 +60,36 @@ window.onload=()=>{
 		document.write(i+"&nbsp;")
 	}*/
 	const names=["홍길동","이순신","심청이","박문수","강감찬"]
+	const sexs=["남자","남자","여자","남자","남자"]
 	document.write("<h1>일반 배열 출력</h1>")
 	document.write(names[0]+"<br>")
 	document.write(names[1]+"<br>")
 	document.write(names[2]+"<br>")
 	document.write(names[3]+"<br>")
 	document.write(names[4]+"<br>")
+	
+	document.write("<h1>for of: 데이터를 한개씩 읽기</h1>")
+	for(let name of names)
+	{
+		document.write(name+"<br>")
+	}
+	
+	document.write("<h1>for in: 인덱스 번호</h1>")
+	for(let j in names)
+	{
+		document.write(name[j]+"("+sexs[j]+")<br>")
+	}
+	
+	document.write("<h1>map 사용 : 가장 많이 사용</h1>")
+	// 배열명.map(function(name){})
+	names.map(function(name,index){
+		document.write(name+"("+sexs[index]+")<br>")
+	})
+	document.write("<h1>forEach 사용 : 권장</h1>")
+	// 배열명.forEach(function(name){})
+	names.forEach(function(name){
+		document.write(name+"<br>")
+	})
 }
 </script>
 </head>
