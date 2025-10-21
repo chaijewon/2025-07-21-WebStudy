@@ -32,7 +32,7 @@
       number / string / boolean / function / object(object,array)
    3. 연산자 
    4. 제어문 
-   5. 함수 만든는 방법 
+   5. 함수 만드는 방법 
    6. 태그 읽기 
    7. 이벤트 처리 
    8. 라이브러리 함수 
