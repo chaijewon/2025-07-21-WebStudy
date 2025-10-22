@@ -28,6 +28,7 @@ import com.sist.model.Model;
 public class DispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private String[] keys={
+    	"emp/detail.do",
     	"emp/list.do",
     	"music/find.do",
     	"music/list.do"
