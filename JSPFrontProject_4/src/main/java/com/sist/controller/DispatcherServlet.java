@@ -1,5 +1,6 @@
 package com.sist.controller;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,10 +17,23 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+
+import com.sist.model.Model;
 @WebServlet("*.do")
+/*
+ *   com.sist.model.EmpListModel
+     com.sist.model.MusicFindModel
+     com.sist.model.MusicListModel
+ */
 public class DispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+    private String[] keys={
+    	"emp/list.do",
+    	"music/find.do",
+    	"music/list.do"
+    };
+    private Map clsMap=new HashMap();
+    private List<String> clsList=new ArrayList<String>();
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
 		// config => web.xml
@@ -71,12 +85,46 @@ public class DispatcherServlet extends HttpServlet {
 				Element ccs=(Element)list.item(i);
 				String pack=ccs.getAttribute("basePackage");
 				System.out.println(pack);
+				clsList=FileConfig.packageClassData(file.getPath(), pack);
+			}
+			// XML 파싱
+			int i=0;
+			for(String cls:clsList)
+			{
+				Class clsName=Class.forName(cls);
+				// 클래스 정보 읽기 => 메소드 호출 / 메모리 할당 / 변수값 설정 
+				// 리플렉션 
+				Object obj=clsName.getDeclaredConstructor().newInstance();
+				clsMap.put(keys[i], obj);
+				// 메뉴 완성 
+				System.out.println(keys[i]+":"+obj);
+				i++;
 			}
 		}catch(Exception ex) {}
 		
 	}
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		//1. 사용자 요청정보 받기 => URL
+		String cmd=request.getRequestURI();
+		//System.out.println(cmd);
+		// http://localhost/JSPFrontProject_4/emp/list.do?id=admin
+		/*
+		 *  /JSPFrontProject_4/emp/list.do
+		 */
+		cmd=cmd.substring(request.getContextPath().length()+1);
+		System.out.println(cmd);
+		//2. 해당 Model을 찾는다 
+		Model model=(Model)clsMap.get(cmd);
+		//3. Model이 가지고 있는 execute를 실행 
+		String jsp=model.execute(request, response);
+		//4. 실행결과를 => JSP로 전송 
+		RequestDispatcher rd=request.getRequestDispatcher(jsp);
+		rd.forward(request, response);
+		/*
+		 *   1. String : 해당 JSP => return 
+		 *   2. void : 해당 JavaScript로 전송 => JSON
+		 */
 	}
 
 }
