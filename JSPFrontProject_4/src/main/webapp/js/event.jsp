@@ -14,6 +14,10 @@
   width: 960px;
   margin: 0px auto;
 }
+tbody tr:hover{
+  background-color: #FC6;
+  cursor: pointer;
+}
 </style>
 <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript">
@@ -34,15 +38,43 @@ window.onload=async ()=>{
 	// sawon.forEach(sa=>{})
 	for(let sa of sawon)
 	{
-		html+='<tr>'
+		html+='<tr onmouseover="detailData('+sa.empno+')">'
 		    +'<td>'+sa.empno+'</td>'
 		    +'<td>'+sa.ename+'</td>'
 		    +'<td>'+sa.job+'</td>'
 		    +'<td>'+sa.dbday+'</td>'
-		    +'<td>'+sa.deptno'</td>'
+		    +'<td>'+sa.deptno+'</td>'
 		    +'</tr>'
 	}
+	//console.log(html)
 	document.querySelector('tbody').innerHTML=html;
+}
+async function detailData(empno)
+{
+	//alert("선택:"+empno)
+	await axios.get('../emp/detail.do',{
+		params:{
+			empno:empno
+		}
+	}).then(response=>{
+		console.log(response.data)
+		detail=response.data
+	})
+	
+	// 태그 읽기 
+	/*
+	  1. ID => document.getElementById("id명")
+	           document.querySelector("#id명")
+	           => jquery => $('#id')
+	  2. CLASS => document.getElementByClassName("클래스명")
+	           document.querySelectorAll(".클래스명")
+	  3. 태그 => document.getElementByTagName("태그명")
+	           document.querySelector("태그명")
+	*/
+	let table=document.querySelector("#user-table")
+	table.style.display='';
+	document.querySelector('#sabun').innerHTML=detail.empno
+	document.getElementById('name').innerHTML=detail.ename
 }
 </script>
 </head>
@@ -65,7 +97,7 @@ window.onload=async ()=>{
     </table>
    </div>
    <div class="col-sm-4">
-    <table class="table user-table" style="display:none">
+    <table class="table" id="user-table" style="display:none">
      <tr>
       <th width=30%>사번</th>
       <td width=70% id="sabun"></td>
