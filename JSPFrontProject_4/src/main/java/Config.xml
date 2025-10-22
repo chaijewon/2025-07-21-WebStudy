@@ -19,6 +19,6 @@
     </environment>
   </environments>
   <mappers>
-    <package name="com.sist.mapper"/>
+    <mapper resource="com/sist/mapper/emp-mapper.xml"/>
   </mappers>
 </configuration>
