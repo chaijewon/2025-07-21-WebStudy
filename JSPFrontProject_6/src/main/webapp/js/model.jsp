@@ -24,6 +24,14 @@
        DOMScript => Vue / React / Jquery
         | 태그를 제어하는 프로그램 
         | 태그를 찾는 방법 => CSS 선택자 
+    문서객체 조작 (345page)
+    1) 글자 조작 
+       innerHTML => HTML이 적용 => html()
+       textContent => 순수하게 문자열 => text()
+    2) 스타일 조작 
+       태그.style.속성=값 => css()
+    3) 속성 조작 
+       img.src="" => attr("src","")
 --%>
 <!DOCTYPE html>
 <html>
@@ -42,6 +50,80 @@ h1 {
 <script type="text/javascript">
 function gesan()
 {
+	let kor=document.getElementById("kor");
+	if(kor.value==="")
+	{
+		kor.focus()
+		return
+	}
+	let eng=document.getElementById("eng");
+	if(eng.value==="")
+	{
+		eng.focus()
+		return
+	}
+	let math=document.getElementById("math");
+	if(math.value==="")
+	{
+		math.focus()
+		return
+	}
+	
+	let total=Number(kor.value)+parseInt(eng.value)+parseInt(math.value)
+	document.getElementById("total").value=total
+	
+	let avg=total/3
+	document.getElementById("avg").value=Math.round(avg)
+	
+	let score='A'
+	if(avg>=90)
+		score='A'
+	else if(avg>=80)
+		score='B'
+	else if(avg>=70)
+		score='C'
+	else if(avg>=60)
+		score='D'
+	else
+	    score='F'
+	document.getElementById("score").value=score
+}
+window.onload=()=>{
+	// 태그 읽기 
+	let h2=document.querySelector("h2")
+	// <h2 id="" class="" style="">
+	// style 변경 
+	h2.style.background='red'
+	// 값을 변경 
+	h2.innerHTML="Hello JS"
+	
+	// h2전체 읽기
+	let h2s=document.querySelectorAll('h2')
+	// h2s => 배열 
+	for(let i of h2s)
+	{
+	   i.style.background='green'
+	   i.innerHTML="Hello JavaScript"
+	}
+	
+	let h3=document.querySelector("h3")
+	h3.textContent="아이디 입력하세요"
+	
+	let img=document.querySelectorAll("img")
+	for(let im of img)
+	{
+		im.width=120
+		im.height=200
+	}
+	
+	let acc=document.querySelector("#account")
+	acc.onchange=function(){
+		let val=acc.value
+		let price=document.querySelector("#price")
+		let total=Number(val)*Number(price.textContent)
+		document.querySelector("#sum").innerHTML=
+			'<font color=red>'+total+'원</font>'
+	}
 }
 </script>
 </head>
@@ -100,7 +182,44 @@ function gesan()
       </tr>
      </table>
    </div>
+   <div style="height: 20px"></div>
+   <div class="row">
+     <h2>Hello DOM-1</h2>
+     <h2>Hello DOM-2</h2>
+     <h2>Hello DOM-3</h2>
+     <h2>Hello DOM-4</h2>
+     <h2>Hello DOM-5</h2>
+   </div>
+   <div style="height: 20px"></div>
+   <h1>글자 조작</h1>
+   <h3></h3>
+   <img src="../main/mm1.jpg" width=200 height="300">
+   <img src="../main/mm2.jpg" width=200 height="300">
+   <img src="../main/mm3.png" width=200 height="300">
+   <div style="height: 20px"></div>
+   <div class="row">
+    <h1>select태그 이용</h1>
+    <table class="table">
+     <tr>
+      <td>
+        수량:<select id="account">
+          <option value="1">1개</option>
+          <option value="2">2개</option>
+          <option value="3">3개</option>
+          <option value="4">4개</option>
+          <option value="5">5개</option>
+        </select>
+      </td>
+     </tr>
+     <tr>
+       <td>가격:<span id="price">3000</span></td>
+     </tr>
+     <tr>
+       <td>총금액:<span id="sum"></span></td>
+     </tr>
+    </table>
+   </div>
   </div>
-
+  
 </body>
 </html>
