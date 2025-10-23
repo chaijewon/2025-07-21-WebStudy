@@ -30,6 +30,23 @@
           <li><a href="#">맛집 검색</a></li>
         </ul>
       </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">객체모델
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="../js/model.do">모델</a></li>
+          <li><a href="#">내장함수</a></li>
+          <li><a href="#">JQuery</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">EL&JSTL
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">EL</a></li>
+          <li><a href="#">JSTL</a></li>
+        </ul>
+      </li>
       <li><a href="#">댓글형 게시판</a></li>
     </ul>
   </div>
