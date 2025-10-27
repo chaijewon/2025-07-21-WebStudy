@@ -27,4 +27,20 @@ public class FoodModel {
 	  request.setAttribute("main_jsp", "../food/detail.jsp");
 	  return "../main/main.jsp";
   }
+  @RequestMapping("food/type.do")
+  public String food_type(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  
+	  request.setAttribute("main_jsp","../food/type.jsp");
+	  return "../main/main.jsp";
+  }
+  @RequestMapping("food/find.do")
+  public String food_find(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  
+	  request.setAttribute("main_jsp","../food/find.jsp");
+	  return "../main/main.jsp";
+  }
 }
