@@ -21,10 +21,14 @@ p {
 <body>
   <div class="container">
    <div class="row">
+   <%--
+      for(FoodVO vo:list)
+      {
+   --%>
     <c:forEach var="vo" items="${list }">
       <div class="col-md-3">
 	    <div class="thumbnail">
-	      <a href="#">
+	      <a href="../food/detail.do?fno=${vo.fno }&page=${curpage}">
 	        <img src="${vo.poster }" style="width:230px;height: 150px">
 	        <div class="caption">
 	          <p>${vo.name }</p>
@@ -36,12 +40,23 @@ p {
    </div>
    <div class="row text-center" style="margin-top: 10px">
      <ul class="pagination">
+      <%--
+        if(startPage>1)
+        {
+        
+       --%>
       <c:if test="${startPage>1 }">
         <li><a href="../main/main.do?page=${startPage-1 }">&lt;</a></li>
       </c:if>
+      <%--
+        for(int i=startPage;i<=endPage;i++)
+      --%>
       <c:forEach var="i" begin="${startPage }" end="${endPage }">
        <li ${i==curpage?"class=active":""}><a href="../main/main.do?page=${i }">${i }</a></li>
       </c:forEach>
+      <%--
+        if(endPage<totalpage)
+       --%>
       <c:if test="${endPage<totalpage }">
        <li><a href="../main/main.do?page=${endPage+1 }">&gt;</a></li>
       </c:if>
