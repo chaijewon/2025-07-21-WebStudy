@@ -17,7 +17,7 @@ public class FoodModel {
   {
 	  // 사용자가 보낸 데이터 받기  ?fno &page
 	  String fno=request.getParameter("fno");
-	  String curpage=request.getParameter("curpage");
+	  String curpage=request.getParameter("page");
 	  // 상세보기 데이터 
 	  FoodVO vo=FoodDAO.foodDetailData(Integer.parseInt(fno));
 	  
