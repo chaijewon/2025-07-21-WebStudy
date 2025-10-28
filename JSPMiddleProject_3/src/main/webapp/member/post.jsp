@@ -16,6 +16,15 @@
   width: 450px;
 }
 </style>
+<script type="text/javascript">
+function ok(zip,addr)
+{
+	opener.frm.post1.value=zip.substring(0,3);
+	opener.frm.post2.value=zip.substring(4,7);
+	opener.frm.addr.value=addr;
+	self.close();
+}
+</script>
 </head>
 <body>
   <div class="container">
@@ -43,7 +52,9 @@
          <c:forEach var="vo" items="${list }">
            <tr>
             <td width=20% class="text-center">${vo.zipcode }</td>
-            <td width=80%>${vo.address }</td>
+            <td width=80%>
+             <a href="javascript:ok('${vo.zipcode }','${vo.address }')">${vo.address }</a>
+            </td>
            </tr>
          </c:forEach>
        </tbody>

@@ -28,6 +28,7 @@ $(function(){
   <div class="container">
     <div class="row">
       <h1 class="text-center">회원가입</h1>
+      <form name="frm">
       <table class="table">
         <tr>
          <th width=20%>
@@ -48,6 +49,7 @@ $(function(){
           </td>
         </tr>
       </table>
+      </form>
     </div>
   </div>
 </body>
