@@ -102,4 +102,32 @@ public class FoodDAO {
 	     -->
 	  </select>
     */
+   public static List<FoodVO> foodTypeListData(Map map)
+   {
+	   List<FoodVO> list=null;
+	   try
+	   {
+		   SqlSession session=ssf.openSession();
+		   list=session.selectList("foodTypeListData",map);
+		   session.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   return list;
+   }
+   public static int foodTypeTotalPage(String type)
+   {
+	   int total=0;
+	   try
+	   {
+		   SqlSession session=ssf.openSession();
+		   total=session.selectOne("foodTypeTotalPage",type);
+		   session.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   return total;
+   }
 }

@@ -66,12 +66,23 @@
        Oracle : Inline View
      -->
   </select>
+  <!-- 
+        name
+        subject
+        content
+        
+        name+subject
+        name+content
+        name+subject+content
+        subject+content
+   -->
   <select id="foodTypeTotalPage" resultType="int"
    parameterType="string" 
   >
     SELECT CEIL(COUNT(*)/12.0)
     FROM menupan_food
     WHERE type LIKE '%'||#{type}||'%'
+    
     <!-- 
          MySQL : WHERE type LIKE CONCAT('%',#{type},'%')
          NVL = IFNULL , TO_CHAR = DATE_FORMAT
