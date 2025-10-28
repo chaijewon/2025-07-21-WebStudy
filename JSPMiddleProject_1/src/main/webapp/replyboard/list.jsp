@@ -61,7 +61,21 @@
         </c:forEach>
       </tbody>
      </table>
+     <table class="table">
+       <tr>
+         <td class="text-left">
+          <input type="checkbox" value="name">이름
+          <input type="checkbox" value="subject">제목
+          <input type="checkbox" value="content">내용
+          <input type=text class="input-sm" size=10 name=fd>
+          <input type=button value="검색"
+            class="btn-sm btn-danger">
+         </td>
+         <td class="text-right"></td>
+       </tr>
+     </table>
     </div>
+    
   </div>  
 </body>
 </html>
