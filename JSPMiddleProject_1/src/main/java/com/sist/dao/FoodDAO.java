@@ -130,4 +130,32 @@ public class FoodDAO {
 	   }
 	   return total;
    }
+   /*
+    *   <select id="foodFindListData" resultType="FoodVO"
+	    parameterType="hashmap"
+	  >
+	    SELECT fno,name,subject,address
+	    FROM menupan_food
+	    WHERE ${column} LIKE '%'||#{ss}||'%'
+	    <!-- 
+	      WHERE 'address' LIKE ~
+	      $ = table , column 
+	     -->
+	  </select>
+    */
+   public static List<FoodVO> foodFindListData(Map map)
+   {
+	   List<FoodVO> list=null;
+	   try
+	   {
+		   SqlSession session=ssf.openSession();
+	       list=session.selectList("foodFindListData",map);
+	       session.close();
+	   }catch(Exception ex)
+	   {
+		  System.out.println("foodFindListData:"+ex.getMessage());
+	   }
+	   
+	   return list;
+   }
 }

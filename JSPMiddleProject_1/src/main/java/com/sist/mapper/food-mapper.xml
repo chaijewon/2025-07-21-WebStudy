@@ -88,5 +88,18 @@
          NVL = IFNULL , TO_CHAR = DATE_FORMAT
      -->
   </select>
-  
+  <select id="foodFindListData" resultType="FoodVO"
+    parameterType="hashmap"
+  >
+    SELECT fno,name,poster,address
+    FROM menupan_food
+    WHERE ${column} LIKE '%'||#{ss}||'%'
+    <!-- 
+      WHERE 'address' LIKE ~
+      $ = table , column 
+     -->
+  </select>
 </mapper>
+
+
+

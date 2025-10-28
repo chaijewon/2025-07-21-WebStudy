@@ -84,7 +84,17 @@ public class FoodModel {
   public String food_find(HttpServletRequest request,
 		  HttpServletResponse response)
   {
-	  
+	  String column=request.getParameter("column");
+	  String ss=request.getParameter("ss");
+	  if(ss==null)
+		  ss="마포";
+	  if(column==null)
+		  column="address";
+	  Map map=new HashMap();
+	  map.put("ss", ss);
+	  map.put("column", column);
+	  List<FoodVO> list=FoodDAO.foodFindListData(map);
+	  request.setAttribute("list", list);
 	  request.setAttribute("main_jsp","../food/find.jsp");
 	  return "../main/main.jsp";
   }
