@@ -27,14 +27,19 @@ public class FoodModel {
 	  request.setAttribute("main_jsp", "../food/detail.jsp");
 	  return "../main/main.jsp";
   }
+  // Ajax 
   @RequestMapping("food/type.do")
   public String food_type(HttpServletRequest request,
 		  HttpServletResponse response)
   {
+	  // 해당 음식종류 찾기 
+	  String type=request.getParameter("type");
+	  // DAO로 전송 
 	  
 	  request.setAttribute("main_jsp","../food/type.jsp");
 	  return "../main/main.jsp";
   }
+  // Ajax 
   @RequestMapping("food/find.do")
   public String food_find(HttpServletRequest request,
 		  HttpServletResponse response)

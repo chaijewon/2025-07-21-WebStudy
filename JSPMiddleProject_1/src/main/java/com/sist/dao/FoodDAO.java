@@ -75,4 +75,31 @@ public class FoodDAO {
 	   session.close();
 	   return vo;
    }
+   /*
+    *   <!-- 음식 종류별  -->
+	  <select id="foodTypeListData" resultType="FoodVO"
+	   parameterType="hashmap"
+	  >
+	    SELECT fno,name,poster,type
+	    FROM menupan_food
+	    WHERE type LIKE '%'||#{type}||'%'
+	    ORDER BY fno ASC
+	    OFFSET #{start} ROWS FETCH NEXT 12 ROWS ONLY
+	    <!-- 
+	       MySQL : LIMIT start,12
+	       Oracle : Inline View
+	     -->
+	  </select>
+	  <select id="foodTypeTotalPage" resultType="int"
+	   parameterType="string" 
+	  >
+	    SELECT CEIL(COUNT(*)/12.0)
+	    FROM menupan_food
+	    WHERE type LIKE '%'||#{type}||'%'
+	    <!-- 
+	         MySQL : WHERE type LIKE CONCAT('%',#{type},'%')
+	         NVL = IFNULL , TO_CHAR = DATE_FORMAT
+	     -->
+	  </select>
+    */
 }
