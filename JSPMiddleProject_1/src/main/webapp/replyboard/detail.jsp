@@ -85,8 +85,8 @@ $(function(){
                                detail   list    list
           --%>
           <td colspan="4" class="text-right">
-            <a href="#" class="btn btn-xs btn-success">답변</a>
-            <a href="#" class="btn btn-xs btn-warning">수정</a>
+            <a href="../board/reply.do?no=${vo.no }" class="btn btn-xs btn-success">답변</a>
+            <a href="../board/update.do?no=${vo.no }" class="btn btn-xs btn-warning">수정</a>
             <span class="btn btn-xs btn-info" id="delBtn">삭제</span>
             <a href="../board/list.do" class="btn btn-xs btn-primary">목록</a>
           </td>

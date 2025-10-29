@@ -103,4 +103,32 @@ public class ReplyBoardDAO {
 	   session.close();
 	   return vo;
    }
+   /*
+    *  <select id="boardUpdateData" resultType="ReplyBoardVO"
+     parameterType="int"
+   >
+     SELECT no,name,subject,content
+     FROM replyboard
+     WHERE no=#{no}
+   </select>
+   <select id="boardGetPassword" resultType="string"
+    parameterType="int"
+   >
+     SELECT pwd FROM replyBoard
+     WHERE no=#{no}
+   </select>
+   <update id="boardUpdate" parameterType="ReplyBoardVO">
+     UPDATE replyboard SET
+     name=#{name},subject=#{subject},content=#{content}
+     WHERE no=#{no}
+   </update>
+    */
+   public static ReplyBoardVO boardUpdateData(int no)
+   {
+	   SqlSession session=ssf.openSession();
+	   ReplyBoardVO vo=
+			session.selectOne("boardUpdateData", no);
+	   session.close();
+	   return vo;
+   }
 }

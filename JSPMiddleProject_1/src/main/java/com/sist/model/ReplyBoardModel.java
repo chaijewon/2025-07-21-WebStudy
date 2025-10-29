@@ -84,5 +84,26 @@ public class ReplyBoardModel {
 	  request.setAttribute("main_jsp", "../replyboard/detail.jsp");
 	  return "../main/main.jsp";
   }
+  @RequestMapping("board/update.do")
+  public String board_update(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  String no=request.getParameter("no");
+	  ReplyBoardVO vo=
+		ReplyBoardDAO.boardUpdateData(Integer.parseInt(no));
+	  // update.jsp로 전송 
+	  request.setAttribute("vo", vo);
+	  request.setAttribute("main_jsp", "../replyboard/update.jsp");
+	  return "../main/main.jsp";
+  }
+  
+  @RequestMapping("board/reply.do")
+  public String board_reply(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  
+	  request.setAttribute("main_jsp", "../replyboard/reply.jsp");
+	  return "../main/main.jsp";
+  }
   
 }
