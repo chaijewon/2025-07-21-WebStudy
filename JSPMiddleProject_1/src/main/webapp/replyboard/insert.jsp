@@ -8,7 +8,7 @@
 <style type="text/css">
 .row {
   margin: 0px auto;
-  width: 800px;
+  width: 700px;
 }
 </style>
 </head>

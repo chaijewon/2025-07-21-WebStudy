@@ -8,7 +8,12 @@
 <style type="text/css">
 .row {
   margin: 0px auto;
-  width: 800px;
+  width: 700px;
+}
+pre{
+  white-space: pre-wrap;
+  border: none;
+  background-color: white;
 }
 </style>
 </head>
@@ -31,11 +36,26 @@
        </tr>
        <tr>
         <th width=20% class="text-center">제목</th>
-        <td colspan="3">${vo.subejct}</td>
+        <td colspan="3">${vo.subject}</td>
        </tr>
        <tr>
          <td colspan="4" class="text-left" valign="top"
           height="200"><pre>${vo.content}</pre></td>
+       </tr>
+       <tr>
+         <%--
+                 list(목록)   detail(상세)
+                   |            |
+                 insert       update / reply / delete
+                                |       |        |
+                               detail   list    list
+          --%>
+          <td colspan="4" class="text-right">
+            <a href="#" class="btn btn-xs btn-success">답변</a>
+            <a href="#" class="btn btn-xs btn-warning">수정</a>
+            <a href="#" class="btn btn-xs btn-info">삭제</a>
+            <a href="../board/list.do" class="btn btn-xs btn-primary">목록</a>
+          </td>
        </tr>
      </table>
     </div>
