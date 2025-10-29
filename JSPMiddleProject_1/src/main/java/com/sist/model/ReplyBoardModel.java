@@ -68,5 +68,21 @@ public class ReplyBoardModel {
 	  // 재호출 => list.do 다시 호출한다
 	  return "redirect:../board/list.do";
   }
+  @RequestMapping("board/detail.do")
+  public String board_detail(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  // 사용자 전송 데이터 받기 
+	  // ?no=10
+	  String no=request.getParameter("no");
+	  // 요청 처리 => DAO
+	  ReplyBoardVO vo=
+	    ReplyBoardDAO.boardDetailData(Integer.parseInt(no));
+	  // 처리된 결과값 => 해당 JSP전송 
+	  request.setAttribute("vo", vo);
+	  // 화면 출력 
+	  request.setAttribute("main_jsp", "../replyboard/detail.jsp");
+	  return "../main/main.jsp";
+  }
   
 }

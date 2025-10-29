@@ -78,5 +78,29 @@ public class ReplyBoardDAO {
 	   session.insert("boardInsert",vo);
 	   session.close();
    }
-   
+   /*
+    *   <update id="boardHitIncrement" parameterType="int">
+      UPDATE replyboard SET
+      hit=hit+1 
+      WHERE no=#{no}
+    </update>
+    <select id="boardDetailData" resultType="ReplyBoardVO"
+     parameterType="int"
+    >
+      SELECT no,name,subject,content,hit,
+             TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday
+      FROM replyboard
+      WHERE no=#{no}
+    </select>
+    */
+   public static ReplyBoardVO boardDetailData(int no)
+   {
+	   SqlSession session=ssf.openSession();
+	   session.update("boardHitIncrement",no);
+	   session.commit();
+	   ReplyBoardVO vo=
+			   session.selectOne("boardDetailData",no);
+	   session.close();
+	   return vo;
+   }
 }
