@@ -44,4 +44,29 @@ public class ReplyBoardModel {
 	  request.setAttribute("main_jsp", "../replyboard/insert.jsp");
 	  return "../main/main.jsp";
   }
+  @RequestMapping("board/insert_ok.do")
+  public String board_insert_ok(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  // 처리 
+	  //1. 사용자가 보낸 데이터 받기  name , subject, content,pwd
+	  String name=request.getParameter("name");
+	  String subject=request.getParameter("subject");
+	  String content=request.getParameter("content");
+	  String pwd=request.getParameter("pwd");
+	  
+	  ReplyBoardVO vo=new ReplyBoardVO();
+	  vo.setName(name);
+	  vo.setContent(content);
+	  vo.setSubject(subject);
+	  vo.setPwd(pwd);
+	  
+	  // vo=>DAO : 오라클 저장 
+	  ReplyBoardDAO.boardInsert(vo);
+	  // 화면 이동 
+	  // sendRedirect() => 화면 이동 (request를 초기화)
+	  // 재호출 => list.do 다시 호출한다
+	  return "redirect:../board/list.do";
+  }
+  
 }

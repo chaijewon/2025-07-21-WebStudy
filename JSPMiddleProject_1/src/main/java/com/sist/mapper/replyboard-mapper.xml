@@ -42,4 +42,13 @@
    SELECT COUNT(*)
    FROM replyboard
   </select>
+  <!-- 
+       데이터 저장 
+   -->
+   <insert id="boardInsert" parameterType="ReplyBoardVO">
+     INSERT INTO replyboard(no,name,subject,content,pwd,group_id)
+     VALUES(rb_no_seq.nextval,#{name},
+           #{subject},#{content},#{pwd},
+           (SELECT NVL(MAX(group_id)+1,1) FROM replyboard))
+   </insert>
 </mapper>

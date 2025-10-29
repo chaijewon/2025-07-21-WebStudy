@@ -72,4 +72,11 @@ public class ReplyBoardDAO {
 	   return total;
    }
    
+   public static void boardInsert(ReplyBoardVO vo)
+   {
+	   SqlSession session=ssf.openSession(true);
+	   session.insert("boardInsert",vo);
+	   session.close();
+   }
+   
 }
