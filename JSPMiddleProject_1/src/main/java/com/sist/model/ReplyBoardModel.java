@@ -37,4 +37,11 @@ public class ReplyBoardModel {
 	  request.setAttribute("main_jsp", "../replyboard/list.jsp");
 	  return "../main/main.jsp";
   }
+  @RequestMapping("board/insert.do")
+  public String board_insert(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  request.setAttribute("main_jsp", "../replyboard/insert.jsp");
+	  return "../main/main.jsp";
+  }
 }

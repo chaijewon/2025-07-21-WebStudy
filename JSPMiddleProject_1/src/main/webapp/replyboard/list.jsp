@@ -71,7 +71,11 @@
           <input type=button value="검색"
             class="btn-sm btn-danger">
          </td>
-         <td class="text-right"></td>
+         <td class="text-right">
+          <a href="#" class="btn btn-sm btn-success">이전</a>
+            ${curpage } page / ${totalpage } pages
+          <a href="#" class="btn btn-sm btn-success">다음</a>
+         </td>
        </tr>
      </table>
     </div>
