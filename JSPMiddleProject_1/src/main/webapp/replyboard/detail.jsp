@@ -16,6 +16,40 @@ pre{
   background-color: white;
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+let bCheck=false
+$(function(){
+	// java=main / javascript=window.onload=function(){}
+	// vue = mounted / react = effect 
+	/*
+	    1. click : button , span , td ...
+	    2. hover : img / button 
+	    3. change : select 
+	    4. mousedown / mouseup 
+	    5. keyup / keydown
+	    
+	    $ = document.querySelector(CSS선택자)
+	        id => #
+	        class => .
+	        tag => tag명
+	*/
+	$('#delBtn').click(function(){
+		if(bCheck===false)
+		{
+			$('#delBtn').text("취소")
+			$('#del').show("slow")// display:''
+			bCheck=true
+		}
+		else
+		{
+			$('#delBtn').text("삭제") 
+			$('#del').hide("slow") // display:none
+			bCheck=false
+		}
+	})
+})
+</script>
 </head>
 <body>
   <div class="container">
@@ -53,9 +87,17 @@ pre{
           <td colspan="4" class="text-right">
             <a href="#" class="btn btn-xs btn-success">답변</a>
             <a href="#" class="btn btn-xs btn-warning">수정</a>
-            <a href="#" class="btn btn-xs btn-info">삭제</a>
+            <span class="btn btn-xs btn-info" id="delBtn">삭제</span>
             <a href="../board/list.do" class="btn btn-xs btn-primary">목록</a>
           </td>
+       </tr>
+       <tr id="del" style="display:none">
+         <td colspan="4" class="text-right">
+           비밀번호:<input type="password" name=pwd
+                   size=10 class="input-sm">
+                  <input type=button class="btn-sm btn-danger"
+                   value="삭제">
+         </td>
        </tr>
      </table>
     </div>
