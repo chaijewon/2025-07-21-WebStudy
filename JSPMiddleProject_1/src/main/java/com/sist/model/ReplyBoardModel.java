@@ -3,6 +3,7 @@ package com.sist.model;
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import com.sist.vo.*;
@@ -101,9 +102,59 @@ public class ReplyBoardModel {
   public String board_reply(HttpServletRequest request,
 		  HttpServletResponse response)
   {
-	  
+	  String no=request.getParameter("no");
+	  request.setAttribute("no", no);
 	  request.setAttribute("main_jsp", "../replyboard/reply.jsp");
 	  return "../main/main.jsp";
+  }
+  @RequestMapping("board/update_ok.do")
+  public void board_update_ok(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  //1. 사용자가 보낸 데이터 받기  name , subject, content,pwd
+	  String name=request.getParameter("name");
+	  String subject=request.getParameter("subject");
+	  String content=request.getParameter("content");
+	  String pwd=request.getParameter("pwd");
+	  String no=request.getParameter("no");
+	  
+	  ReplyBoardVO vo=new ReplyBoardVO();
+	  vo.setName(name);
+	  vo.setContent(content);
+	  vo.setSubject(subject);
+	  vo.setPwd(pwd);
+	  vo.setNo(Integer.parseInt(no));
+	  
+	  // DAO 연동 
+	  String res=ReplyBoardDAO.boardUpdate(vo);
+	  // 결과값을 받아서 => Ajax로 전송 
+	  try
+	  {
+		  response.setContentType("text/html;charset=UTF-8");
+		  PrintWriter out=response.getWriter();
+		  out.write(res);
+	  }catch(Exception ex) {}
+  }
+  @RequestMapping("board/reply_ok.do")
+  public String board_reply_ok(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  String name=request.getParameter("name");
+	  String subject=request.getParameter("subject");
+	  String content=request.getParameter("content");
+	  String pwd=request.getParameter("pwd");
+	  String no=request.getParameter("pno");
+	  
+	  ReplyBoardVO vo=new ReplyBoardVO();
+	  vo.setName(name);
+	  vo.setContent(content);
+	  vo.setSubject(subject);
+	  vo.setPwd(pwd);
+	  int pno=Integer.parseInt(no);
+	  
+	  // DB 연동
+	  ReplyBoardDAO.boardReplyInsert(pno, vo);
+	  return "redirect:../board/list.do";
   }
   
 }

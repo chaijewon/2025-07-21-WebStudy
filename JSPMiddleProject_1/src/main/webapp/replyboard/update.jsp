@@ -43,13 +43,32 @@ $(function(){
 			return
 		}
 		
-		/*$.ajax({
+		let no=$('#no').val()
+		
+		$.ajax({
 			type:"post",
 			url:'../board/update_ok.do',
-			data:
-		})*/
-		let a=$('#frm').serialize()
-		console.log(a)
+			data:$('#frm').serialize(),
+			success:function(result)
+			{
+				if(result==='yes')
+				{
+					location.href="../board/detail.do?no="+no
+				}
+				else
+				{
+					alert("비밀번호가 틀립니다!!")
+					$('#pwd').val("")
+					$('#pwd').focus()
+				}
+			},
+			error:function(error)
+			{
+				console.log(error.responseText)
+			}
+		})
+		//let a=$('#frm').serialize()
+		//console.log(a)
 	})
 })
 </script>
