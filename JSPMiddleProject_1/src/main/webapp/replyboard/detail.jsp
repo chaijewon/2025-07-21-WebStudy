@@ -94,9 +94,10 @@ $(function(){
        <tr id="del" style="display:none">
          <td colspan="4" class="text-right">
            비밀번호:<input type="password" name=pwd
-                   size=10 class="input-sm">
+                   size=10 class="input-sm" id=pwd>
+                  
                   <input type=button class="btn-sm btn-danger"
-                   value="삭제">
+                   value="삭제" id="deleteBtn" data-no="${vo.no }">
          </td>
        </tr>
      </table>

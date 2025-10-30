@@ -216,4 +216,49 @@ public class ReplyBoardDAO {
 	   session.close();
 	   
    }
+   /*
+    *   <select id="boardDeleteInfoData" resultType="ReplyBoardVO"
+    parameterType="int"
+   >
+     SELECT pwd,depth,root
+     FROM replyboard
+     WHERE no=#{no}
+   </select>
+   <update id="boardSCData" parameterType="int">
+    UPDATE replyboard SET 
+    subject='관리자가 삭제한 게시물입니다',content='관리자가 삭제한 게시물입니다'
+    WHERE no=#{no}
+   </update>
+   <delete id="boardDelete" parameterType="int">
+     DELETE FROM replyboard
+     WHERE no=#{no}
+   </delete>
+   <update id="boardDepthDecrment" parameterType="int">
+     UPDATE replyboard SET
+     depth=depth-1
+     WHERE no=#{no}
+   </update>
+    */
+   public String boardDelete(int no,String pwd)
+   {
+	   String res="no";
+	   SqlSession session=ssf.openSession();
+	   ReplyBoardVO vo=session.selectOne("boardDeleteInfoData",no);
+	   if(pwd.equals(vo.getPwd()))
+	   {
+		   res="yes";
+		   if(vo.getDepth()==0)
+		   {
+			   session.delete("boardDelete",no);
+		   }
+		   else
+		   {
+			   session.update("boardSCData",no);
+		   }
+		   session.update("boardDepthDecrment",vo.getRoot());
+	   }
+	   session.commit();
+	   session.close();
+	   return res;
+   }
 }
