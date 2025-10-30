@@ -35,6 +35,7 @@ public class ReplyBoardModel {
 	  request.setAttribute("list", list);
 	  request.setAttribute("curpage", curpage);
 	  request.setAttribute("totalpage", totalpage);
+	  request.setAttribute("msg", "관리자가 삭제한 게시물입니다");
 	  request.setAttribute("main_jsp", "../replyboard/list.jsp");
 	  return "../main/main.jsp";
   }
@@ -93,7 +94,7 @@ public class ReplyBoardModel {
 	  ReplyBoardVO vo=
 		ReplyBoardDAO.boardUpdateData(Integer.parseInt(no));
 	  // update.jsp로 전송 
-	  request.setAttribute("vo", vo);
+	  request.setAttribute("vo", vo); // ${} = request.getAttribute
 	  request.setAttribute("main_jsp", "../replyboard/update.jsp");
 	  return "../main/main.jsp";
   }
@@ -155,6 +156,23 @@ public class ReplyBoardModel {
 	  // DB 연동
 	  ReplyBoardDAO.boardReplyInsert(pno, vo);
 	  return "redirect:../board/list.do";
+  }
+  @RequestMapping("board/delete.do")
+  public void board_delete(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  String no=request.getParameter("no");
+	  String pwd=request.getParameter("pwd");
+	  
+	  String res=
+		ReplyBoardDAO.boardDelete(Integer.parseInt(no), pwd);
+	  
+	  try
+	  {
+		  response.setContentType("text/html;charset=UTF-8");
+		  PrintWriter out=response.getWriter();
+		  out.write(res);
+	  }catch(Exception ex) {}
   }
   
 }

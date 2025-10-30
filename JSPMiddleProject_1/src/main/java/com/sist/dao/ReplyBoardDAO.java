@@ -239,7 +239,7 @@ public class ReplyBoardDAO {
      WHERE no=#{no}
    </update>
     */
-   public String boardDelete(int no,String pwd)
+   public static String boardDelete(int no,String pwd)
    {
 	   String res="no";
 	   SqlSession session=ssf.openSession();
